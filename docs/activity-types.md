@@ -7,4 +7,5 @@ autoattendmod | 自動出欠モジュール | ![](https://imgur.com/5WJp3n0.jpg)
 folder | フォルダ | ![](https://imgur.com/x2fJD1b.jpg) | text
 forum　| フォーラム | ![](https://imgur.com/tWOlj5A.jpg) | text
 label | ラベル | none | text
+page | ページ | ![](https://imgur.com/ve6jBda.jpg) | text
 unknown | none | none | text
