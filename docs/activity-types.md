@@ -8,4 +8,5 @@ folder | フォルダ | ![](https://imgur.com/x2fJD1b.jpg) | text
 forum　| フォーラム | ![](https://imgur.com/tWOlj5A.jpg) | text
 label | ラベル | none | text
 page | ページ | ![](https://imgur.com/ve6jBda.jpg) | text
+questionnaire | アンケート | ![](https://imgur.com/PHADysc.jpg) | text
 unknown | none | none | text
