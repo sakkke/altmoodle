@@ -150,6 +150,21 @@ class Sections(APIView):
                     pass
 
 
+                # url
+
+                try:
+                    section.find_element(By.XPATH, f'.//li[position() = {j} and contains(@class, "activity") and contains(@class, "modtype_url")]')
+
+                    activities.append({
+                        'type': 'url',
+                        'text': activity.find_element(By.XPATH, './/span[contains(@class, "instancename")]').text,
+                    })
+
+                    continue
+                except NoSuchElementException:
+                    pass
+
+
                 # unknown
 
                 activities.append({

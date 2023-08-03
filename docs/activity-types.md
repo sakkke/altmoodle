@@ -11,3 +11,4 @@ page | ページ | ![](https://imgur.com/ve6jBda.jpg) | text
 questionnaire | アンケート | ![](https://imgur.com/PHADysc.jpg) | text
 resource | ファイル | ![](https://imgur.com/bfyBrrj.jpg) | text
 unknown | none | none | text
+url | URL | ![](https://imgur.com/3PRkzRr.jpg) | text
