@@ -52,7 +52,9 @@ class Sections(APIView):
 
                     activities.append({
                         'type': 'autoattendmod',
-                        'text': activity.find_element(By.XPATH, './/span[contains(@class, "instancename")]').text,
+
+                        # Remove "\n自動出欠" with [:-5]
+                        'text': activity.find_element(By.XPATH, './/span[contains(@class, "instancename")]').text[:-5],
                     })
 
                     continue
@@ -67,7 +69,9 @@ class Sections(APIView):
 
                     activities.append({
                         'type': 'folder',
-                        'text': activity.find_element(By.XPATH, './/span[contains(@class, "instancename")]').text,
+
+                        # Remove "\nフォルダ" with [:-5]
+                        'text': activity.find_element(By.XPATH, './/span[contains(@class, "instancename")]').text[:-5],
                     })
 
                     continue
@@ -82,7 +86,9 @@ class Sections(APIView):
 
                     activities.append({
                         'type': 'forum',
-                        'text': activity.find_element(By.XPATH, './/span[contains(@class, "instancename")]').text,
+
+                        # Remove "\nフォーラム" with [:-6]
+                        'text': activity.find_element(By.XPATH, './/span[contains(@class, "instancename")]').text[:-6],
                     })
 
                     continue
@@ -97,7 +103,9 @@ class Sections(APIView):
 
                     activities.append({
                         'type': 'label',
-                        'text': activity.text,
+
+                        # Remove "完了\n" with [3:]
+                        'text': activity.text[3:],
                     })
 
                     continue
@@ -112,7 +120,9 @@ class Sections(APIView):
 
                     activities.append({
                         'type': 'page',
-                        'text': activity.find_element(By.XPATH, './/span[contains(@class, "instancename")]').text,
+
+                        # Remove "\nページ" with [:-4]
+                        'text': activity.find_element(By.XPATH, './/span[contains(@class, "instancename")]').text[:-4],
                     })
 
                     continue
@@ -142,7 +152,9 @@ class Sections(APIView):
 
                     activities.append({
                         'type': 'resource',
-                        'text': activity.find_element(By.XPATH, './/span[contains(@class, "instancename")]').text,
+
+                        # Remove "\nファイル" with [:-5]
+                        'text': activity.find_element(By.XPATH, './/span[contains(@class, "instancename")]').text[:-5],
                     })
 
                     continue
@@ -157,7 +169,9 @@ class Sections(APIView):
 
                     activities.append({
                         'type': 'url',
-                        'text': activity.find_element(By.XPATH, './/span[contains(@class, "instancename")]').text,
+
+                        # Remove "\nURL" with [:-4]
+                        'text': activity.find_element(By.XPATH, './/span[contains(@class, "instancename")]').text[:-4],
                     })
 
                     continue
