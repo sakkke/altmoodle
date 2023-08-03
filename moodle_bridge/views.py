@@ -135,6 +135,21 @@ class Sections(APIView):
                     pass
 
 
+                # resource
+
+                try:
+                    section.find_element(By.XPATH, f'.//li[position() = {j} and contains(@class, "activity") and contains(@class, "modtype_resource")]')
+
+                    activities.append({
+                        'type': 'resource',
+                        'text': activity.find_element(By.XPATH, './/span[contains(@class, "instancename")]').text,
+                    })
+
+                    continue
+                except NoSuchElementException:
+                    pass
+
+
                 # unknown
 
                 activities.append({
