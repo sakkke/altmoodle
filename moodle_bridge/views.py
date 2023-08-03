@@ -75,6 +75,21 @@ class Sections(APIView):
                     pass
 
 
+                # forum
+
+                try:
+                    section.find_element(By.XPATH, f'.//li[position() = {j} and contains(@class, "activity") and contains(@class, "modtype_forum")]')
+
+                    activities.append({
+                        'type': 'forum',
+                        'text': activity.find_element(By.XPATH, './/span[contains(@class, "instancename")]').text,
+                    })
+
+                    continue
+                except NoSuchElementException:
+                    pass
+
+
                 # unknown
 
                 activities.append({
