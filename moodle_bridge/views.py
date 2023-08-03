@@ -90,6 +90,21 @@ class Sections(APIView):
                     pass
 
 
+                # label
+
+                try:
+                    section.find_element(By.XPATH, f'.//li[position() = {j} and contains(@class, "activity") and contains(@class, "modtype_label")]')
+
+                    activities.append({
+                        'type': 'label',
+                        'text': activity.text,
+                    })
+
+                    continue
+                except NoSuchElementException:
+                    pass
+
+
                 # unknown
 
                 activities.append({
