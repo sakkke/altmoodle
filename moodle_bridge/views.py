@@ -60,6 +60,21 @@ class Sections(APIView):
                     pass
 
 
+                # folder
+
+                try:
+                    section.find_element(By.XPATH, f'.//li[position() = {j} and contains(@class, "activity") and contains(@class, "modtype_folder")]')
+
+                    activities.append({
+                        'type': 'folder',
+                        'text': activity.find_element(By.XPATH, './/span[contains(@class, "instancename")]').text,
+                    })
+
+                    continue
+                except NoSuchElementException:
+                    pass
+
+
                 # unknown
 
                 activities.append({
