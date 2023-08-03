@@ -20,4 +20,5 @@ from django.urls import include, path
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('altmoodle_core.urls')),
+    path('api/', include('moodle_bridge.urls')),
 ]
