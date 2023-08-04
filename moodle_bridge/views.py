@@ -1,5 +1,6 @@
 import os
 import time
+from django.core.cache import cache
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from selenium import webdriver
@@ -12,6 +13,11 @@ from .utils.moodle import login
 class Sections(APIView):
     def get(self, request):
         course_id = request.query_params.get('id')
+
+        response = cache.get(course_id)
+
+        if response is not None:
+            return Response(response)
 
         options = Options()
         options.add_argument('--headless')
@@ -302,5 +308,8 @@ class Sections(APIView):
             response.append(section)
 
         driver.quit()
+
+        # 6 hours = 360 minutes = 21600 seconds
+        cache.set(course_id, response, 21600)
 
         return Response(response)
