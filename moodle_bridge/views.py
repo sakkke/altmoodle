@@ -20,7 +20,9 @@ class Sections(APIView):
 
         login(driver)
 
-        driver.get(os.getenv('MOODLE_URL') + f'/course/view.php?id={course_id}')
+        moodle_url = os.getenv('MOODLE_URL')
+
+        driver.get(moodle_url + f'/course/view.php?id={course_id}')
 
         original_window = driver.current_window_handle
 
@@ -233,7 +235,12 @@ class Sections(APIView):
 
                     driver.get(url)
 
-                    real_url = driver.find_element(By.XPATH, '//div[@class="urlworkaround"]/a').get_attribute('href')
+                    stepping_stone_base_url = moodle_url + '/mod/url/view.php?'
+                    real_url = driver.current_url
+                    on_stepping_stone = stepping_stone_base_url in real_url
+
+                    if on_stepping_stone:
+                        real_url = driver.find_element(By.XPATH, '//div[@class="urlworkaround"]/a').get_attribute('href')
 
                     driver.close()
 
