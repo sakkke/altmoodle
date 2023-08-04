@@ -201,6 +201,28 @@ class Sections(APIView):
                     pass
 
 
+                # quiz
+
+                try:
+                    section.find_element(By.XPATH, f'.//li[position() = {j} and contains(@class, "activity") and contains(@class, "modtype_quiz")]')
+
+                    description = activity.find_element(By.CLASS_NAME, 'description').text
+                    url = activity.find_element(By.XPATH, './/div[@class="activityname"]/a').get_attribute('href')
+
+                    activities.append({
+                        'type': 'quiz',
+
+                        # Remove "\n小テスト" with [:-5]
+                        'text': activity.find_element(By.XPATH, './/span[contains(@class, "instancename")]').text[:-5],
+                        'description': description,
+                        'url': url,
+                    })
+
+                    continue
+                except NoSuchElementException:
+                    pass
+
+
                 # resource
 
                 try:
