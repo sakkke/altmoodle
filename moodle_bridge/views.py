@@ -36,11 +36,13 @@ class Sections(APIView):
                     section.find_element(By.XPATH, f'.//li[position() = {j} and contains(@class, "activity") and contains(@class, "modtype_assign")]')
 
                     description = activity.find_element(By.CLASS_NAME, 'description').text
+                    url = activity.find_element(By.XPATH, './/div[@class="activityname"]/a').get_attribute('href')
 
                     activities.append({
                         'type': 'assign',
                         'text': activity.find_element(By.XPATH, './/span[contains(@class, "instancename")]').text,
                         'description': description,
+                        'url': url,
                     })
 
                     continue
@@ -54,6 +56,7 @@ class Sections(APIView):
                     section.find_element(By.XPATH, f'.//li[position() = {j} and contains(@class, "activity") and contains(@class, "modtype_autoattendmod")]')
 
                     description = activity.find_element(By.CLASS_NAME, 'description').text
+                    url = activity.find_element(By.XPATH, './/div[@class="activityname"]/a').get_attribute('href')
 
                     activities.append({
                         'type': 'autoattendmod',
@@ -61,6 +64,7 @@ class Sections(APIView):
                         # Remove "\n自動出欠" with [:-5]
                         'text': activity.find_element(By.XPATH, './/span[contains(@class, "instancename")]').text[:-5],
                         'description': description,
+                        'url': url,
                     })
 
                     continue
@@ -74,6 +78,7 @@ class Sections(APIView):
                     section.find_element(By.XPATH, f'.//li[position() = {j} and contains(@class, "activity") and contains(@class, "modtype_folder")]')
 
                     description = activity.find_element(By.CLASS_NAME, 'description').text
+                    url = activity.find_element(By.XPATH, './/div[@class="activityname"]/a').get_attribute('href')
 
                     activities.append({
                         'type': 'folder',
@@ -81,6 +86,7 @@ class Sections(APIView):
                         # Remove "\nフォルダ" with [:-5]
                         'text': activity.find_element(By.XPATH, './/span[contains(@class, "instancename")]').text[:-5],
                         'description': description,
+                        'url': url,
                     })
 
                     continue
@@ -94,6 +100,7 @@ class Sections(APIView):
                     section.find_element(By.XPATH, f'.//li[position() = {j} and contains(@class, "activity") and contains(@class, "modtype_forum")]')
 
                     description = activity.find_element(By.CLASS_NAME, 'description').text
+                    url = activity.find_element(By.XPATH, './/div[@class="activityname"]/a').get_attribute('href')
 
                     activities.append({
                         'type': 'forum',
@@ -101,6 +108,7 @@ class Sections(APIView):
                         # Remove "\nフォーラム" with [:-6]
                         'text': activity.find_element(By.XPATH, './/span[contains(@class, "instancename")]').text[:-6],
                         'description': description,
+                        'url': url,
                     })
 
                     continue
@@ -131,6 +139,7 @@ class Sections(APIView):
                     section.find_element(By.XPATH, f'.//li[position() = {j} and contains(@class, "activity") and contains(@class, "modtype_page")]')
 
                     description = activity.find_element(By.CLASS_NAME, 'description').text
+                    url = activity.find_element(By.XPATH, './/div[@class="activityname"]/a').get_attribute('href')
 
                     activities.append({
                         'type': 'page',
@@ -138,6 +147,7 @@ class Sections(APIView):
                         # Remove "\nページ" with [:-4]
                         'text': activity.find_element(By.XPATH, './/span[contains(@class, "instancename")]').text[:-4],
                         'description': description,
+                        'url': url,
                     })
 
                     continue
@@ -151,11 +161,13 @@ class Sections(APIView):
                     section.find_element(By.XPATH, f'.//li[position() = {j} and contains(@class, "activity") and contains(@class, "modtype_questionnaire")]')
 
                     description = activity.find_element(By.CLASS_NAME, 'description').text
+                    url = activity.find_element(By.XPATH, './/div[@class="activityname"]/a').get_attribute('href')
 
                     activities.append({
                         'type': 'questionnaire',
                         'text': activity.find_element(By.XPATH, './/span[contains(@class, "instancename")]').text,
                         'description': description,
+                        'url': url,
                     })
 
                     continue
@@ -169,6 +181,7 @@ class Sections(APIView):
                     section.find_element(By.XPATH, f'.//li[position() = {j} and contains(@class, "activity") and contains(@class, "modtype_resource")]')
 
                     description = activity.find_element(By.CLASS_NAME, 'description').text
+                    url = activity.find_element(By.XPATH, './/div[@class="activityname"]/a').get_attribute('href')
 
                     activities.append({
                         'type': 'resource',
@@ -176,6 +189,7 @@ class Sections(APIView):
                         # Remove "\nファイル" with [:-5]
                         'text': activity.find_element(By.XPATH, './/span[contains(@class, "instancename")]').text[:-5],
                         'description': description,
+                        'url': url,
                     })
 
                     continue
@@ -189,6 +203,7 @@ class Sections(APIView):
                     section.find_element(By.XPATH, f'.//li[position() = {j} and contains(@class, "activity") and contains(@class, "modtype_url")]')
 
                     description = activity.find_element(By.CLASS_NAME, 'description').text
+                    url = activity.find_element(By.XPATH, './/div[@class="activityname"]/a').get_attribute('href')
 
                     activities.append({
                         'type': 'url',
@@ -196,6 +211,7 @@ class Sections(APIView):
                         # Remove "\nURL" with [:-4]
                         'text': activity.find_element(By.XPATH, './/span[contains(@class, "instancename")]').text[:-4],
                         'description': description,
+                        'url': url,
                     })
 
                     continue
@@ -206,11 +222,13 @@ class Sections(APIView):
                 # unknown
 
                 description = activity.find_element(By.CLASS_NAME, 'description').text
+                url = activity.find_element(By.XPATH, './/div[@class="activityname"]/a').get_attribute('href')
 
                 activities.append({
                     'type': 'unknown',
                     'text': activity.find_element(By.XPATH, './/span[contains(@class, "instancename")]').text,
                     'description': description,
+                    'url': url,
                 })
 
             section = {
