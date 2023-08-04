@@ -1,4 +1,5 @@
 import os
+import time
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from selenium import webdriver
@@ -205,6 +206,22 @@ class Sections(APIView):
                     description = activity.find_element(By.CLASS_NAME, 'description').text
                     url = activity.find_element(By.XPATH, './/div[@class="activityname"]/a').get_attribute('href')
 
+                    original_window = driver.current_window_handle
+
+                    driver.switch_to.new_window('tab')
+
+                    driver.get(url)
+
+                    real_url = driver.find_element(By.XPATH, '//div[@class="urlworkaround"]/a').get_attribute('href')
+
+                    driver.close()
+
+                    driver.switch_to.window(original_window)
+
+                    # Rest for requests
+                    rest_seconds = 3
+                    time.sleep(rest_seconds)
+
                     activities.append({
                         'type': 'url',
 
@@ -212,6 +229,7 @@ class Sections(APIView):
                         'text': activity.find_element(By.XPATH, './/span[contains(@class, "instancename")]').text[:-4],
                         'description': description,
                         'url': url,
+                        'real_url': real_url,
                     })
 
                     continue
