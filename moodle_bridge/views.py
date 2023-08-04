@@ -260,14 +260,9 @@ class Sections(APIView):
 
                 # unknown
 
-                description = activity.find_element(By.CLASS_NAME, 'description').text
-                url = activity.find_element(By.XPATH, './/div[@class="activityname"]/a').get_attribute('href')
-
                 activities.append({
                     'type': 'unknown',
                     'text': activity.find_element(By.XPATH, './/span[contains(@class, "instancename")]').text,
-                    'description': description,
-                    'url': url,
                 })
 
             section = {

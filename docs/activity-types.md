@@ -10,5 +10,5 @@ label | ラベル | none | text
 page | ページ | ![](https://imgur.com/ve6jBda.jpg) | text, description, url
 questionnaire | アンケート | ![](https://imgur.com/PHADysc.jpg) | text, description, url, answered
 resource | ファイル | ![](https://imgur.com/bfyBrrj.jpg) | text, description, url
-unknown | none | none | text, description, url
+unknown | none | none | text
 url | URL | ![](https://imgur.com/3PRkzRr.jpg) | text, description, url, real_url
