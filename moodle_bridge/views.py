@@ -22,6 +22,8 @@ class Sections(APIView):
 
         driver.get(os.getenv('MOODLE_URL') + f'/course/view.php?id={course_id}')
 
+        original_window = driver.current_window_handle
+
         titles = driver.find_elements(By.XPATH, '//h3[@data-for="section_title"]')
         sections = driver.find_elements(By.XPATH, '//li[@data-for="section"]')
 
@@ -164,11 +166,32 @@ class Sections(APIView):
                     description = activity.find_element(By.CLASS_NAME, 'description').text
                     url = activity.find_element(By.XPATH, './/div[@class="activityname"]/a').get_attribute('href')
 
+                    driver.switch_to.new_window('tab')
+
+                    driver.get(url)
+
+                    answered = False
+
+                    try:
+                        driver.find_element(By.XPATH, '//div[@class="yourresponse"]/a')
+                        answered = True
+                    except:
+                        pass
+
+                    driver.close()
+
+                    driver.switch_to.window(original_window)
+
+                    # Rest for requests
+                    rest_seconds = 3
+                    time.sleep(rest_seconds)
+
                     activities.append({
                         'type': 'questionnaire',
                         'text': activity.find_element(By.XPATH, './/span[contains(@class, "instancename")]').text,
                         'description': description,
                         'url': url,
+                        'answered': answered,
                     })
 
                     continue
@@ -205,8 +228,6 @@ class Sections(APIView):
 
                     description = activity.find_element(By.CLASS_NAME, 'description').text
                     url = activity.find_element(By.XPATH, './/div[@class="activityname"]/a').get_attribute('href')
-
-                    original_window = driver.current_window_handle
 
                     driver.switch_to.new_window('tab')
 

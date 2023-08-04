@@ -8,7 +8,7 @@ folder | フォルダ | ![](https://imgur.com/x2fJD1b.jpg) | text, description, 
 forum　| フォーラム | ![](https://imgur.com/tWOlj5A.jpg) | text, description, url
 label | ラベル | none | text
 page | ページ | ![](https://imgur.com/ve6jBda.jpg) | text, description, url
-questionnaire | アンケート | ![](https://imgur.com/PHADysc.jpg) | text, description, url
+questionnaire | アンケート | ![](https://imgur.com/PHADysc.jpg) | text, description, url, answered
 resource | ファイル | ![](https://imgur.com/bfyBrrj.jpg) | text, description, url
 unknown | none | none | text, description, url
 url | URL | ![](https://imgur.com/3PRkzRr.jpg) | text, description, url, real_url
